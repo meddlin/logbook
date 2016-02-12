@@ -3,3 +3,11 @@
 	display: flex;
 	flex-direction: row;
 }
+
+.entry-display {
+	display: flex;
+	flex-direction: row;
+}
+.entry-display > .item {
+	margin: 0 2em 0 2em;
+}

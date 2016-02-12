@@ -1,16 +1,35 @@
 <head>
-  <title>logbook</title>
+  <title>Logbook</title>
 </head>
 
 <body>
-  <h2>Logbook</h2>
+	<h2>Logbook</h2>
 
-  {{> newLog}}
+	{{> page}}  
 </body>
+
+<template name="page">
+	{{> newLog}}
+	<br />
+	<br />
+	{{#each all_entries}}
+		{{> entry}}
+	{{/each}}
+</template>
 
 <template name="newLog">
 	<div class="entry">
-		<input type="text" placeholder="input" />
-		<button>Submit</button>
+		<input type="text" id="date" placeholder="input" />
+		<input type="text" id="total-mileage" placeholder="input" />
+		<input type="text" id="trip-mileage" placeholder="input" />
+		<button id="submit-button">Submit</button>
   	</div>
+</template>
+
+<template name="entry">
+	<div class="entry-display">
+		<div class="item">date: {{this.date}}</div>
+		<div class="item">total mileage: {{this.totalMileage}}</div>
+		<div class="item">trip mileage: {{this.tripMileage}}</div>
+	</div>
 </template>

@@ -1,23 +1,25 @@
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+  Template.page.helpers({
+    all_entries: function() {
+      return Entry.find().fetch();
     }
   });
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+  Template.newLog.events({
+    'click #submit-button': function() {
+      Entry.insert(
+        {
+          date: $('#date').val(),
+          totalMileage: $('#total-mileage').val(),
+          tripMileage: $('#trip-mileage').val()
+        });
     }
   });
 }
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
+  /*Meteor.startup(function () {
+  
+  });*/
 }
