@@ -3,12 +3,14 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <h2>Logbook</h2>
 
-  {{> hello}}
+  {{> newLog}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="newLog">
+	<div class="entry">
+		<input type="text" placeholder="input" />
+		<button>Submit</button>
+  	</div>
 </template>
