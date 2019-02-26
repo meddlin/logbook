@@ -8,13 +8,36 @@ class App extends Component {
 
     this.submitForm = this.submitForm.bind(this);
     this.clearForm = this.clearForm.bind(this);
+    this.sayHello = this.sayHello.bind(this);
+  }
+
+  async sayHello() {
+    const response = await fetch('/api/hello');
+    const body = await response.json();
+
+    if (response.status !== 200) throw Error(body.message);
+
+    alert(body.express);
+    return body;
   }
 
   /**
   * Submits form data (via state) to the API
   */
-  submitForm() {
-    console.log('clicked submitForm() ');
+  async submitForm() {
+    console.log('in submit form...');
+
+    const response = await fetch('/api/Log/CreateLog', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ logDate: new Date(), odometer: '99999', tripometer: '555', fuelVolume: '14.3', price: '36.75' })
+    });
+
+    const body = await response.text();
+
+    console.log(`clicked submitForm() ${body}`);
   }
 
   /**
@@ -52,6 +75,8 @@ class App extends Component {
         <div id="controls">
           <div id="btn-submit" onClick={this.submitForm}>Add</div>
           <div id="btn-clear" onClick={this.clearForm}>Clear</div>
+
+          <div id="btn-clear" onClick={this.sayHello}>Say Hello</div>
         </div>
 
       </div>
