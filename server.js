@@ -1,35 +1,26 @@
+require('rootpath')();
 const express = require('express'); // backend server
-const path = require('path');
-const bodyParser = require('body-parser');
 const app = express();
-const fs = require('fs');
-const request = require('request');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const jwt = require('_helpers/jwt');
+const errorHandler = require('_helpers/error-handler');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
-const port = process.env.PORT || 3500;
+// Use JWT auth to secure the API
+app.use(jwt());
 
-app.get('/api/hello', (req, res) => {
-	res.send({ express: 'Hello from Express' });
+// API routes
+app.use('/users', require('./users/users.controller'));
+
+// Global error handler
+app.use(errorHandler);
+
+// Start server
+const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
+const server = app.listen(port, function() {
+	console.log('Server listening on port ' + port);
 });
-
-app.get('/api/makecall', (req, res) => {
-	request('http://www.google.com', (err, res, body) => {
-		if (!err && res.statusCode == 200) console.log(body);
-	});
-});
-
-app.put('/api/Log/CreateLog', (req, res) => {
-	debugger;
-	request({
-		url: 'http://localhost:5000/api/Log/CreateLog',
-		method: 'PUT',
-		json: { logDate: new Date(), odometer: '123456', tripometer: '321', fuelVolume: '14.3', price: '36.75' }
-	}, (err, res) => {
-		if (err) console.log(`request's err: ${err}`);
-		if (res) console.log(`request's res: ${res}`);
-	});
-});
-
-app.listen(port, () => console.log(`Listening on port ${port}`));
