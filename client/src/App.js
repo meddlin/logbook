@@ -1,82 +1,50 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { history } from './_helpers';
+import { alertActions } from './_actions';
+import { PrivateRoute } from './_components';
+import { HomePage } from './HomePage/HomePage';
+import { LoginPage } from './LoginPage/LoginPage';
+import { RegisterPage } from './RegisterPage/RegisterPage';
+import { Log } from './LogPage/Log';
+
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.submitForm = this.submitForm.bind(this);
-    this.clearForm = this.clearForm.bind(this);
-    this.sayHello = this.sayHello.bind(this);
-  }
-
-  async sayHello() {
-    const response = await fetch('/api/hello');
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    alert(body.express);
-    return body;
-  }
-
-  /**
-  * Submits form data (via state) to the API
-  */
-  async submitForm() {
-    console.log('in submit form...');
-
-    const response = await fetch('/api/Log/CreateLog', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ logDate: new Date(), odometer: '99999', tripometer: '555', fuelVolume: '14.3', price: '36.75' })
+    const { dispatch } = this.props;
+    history.listen((location, action) => {
+      // clear alert on location change
+      dispatch(alertActions.clear());
     });
-
-    const body = await response.text();
-
-    console.log(`clicked submitForm() ${body}`);
-  }
-
-  /**
-  * Removes all values from the input elements on the form
-  */
-  clearForm() {
-    console.log('clicked clearForm() ');
   }
 
   render() {
+    const { alert } = this.props;
+
     return (
       <div className="App">
         
-        <div>
-          <label className="label">Date</label>
-          <input type="text" /> 
-        </div>
-        <div>
-          <label className="label">ODO</label>
-          <input type="text" />
-        </div>
-        <div>
-          <label className="label">Trip</label>
-          <input type="text" />
-        </div>
-        <div>
-          <label className="label">Fuel Vol.</label>
-          <input type="text" />
-        </div>
-        <div>
-          <label className="label">Price</label>
-          <input type="text" />
-        </div>
-
-        <div id="controls">
-          <div id="btn-submit" onClick={this.submitForm}>Add</div>
-          <div id="btn-clear" onClick={this.clearForm}>Clear</div>
-
-          <div id="btn-clear" onClick={this.sayHello}>Say Hello</div>
+        <div className="jumbotron">
+            <div className="container">
+                <div className="col-sm-8 col-sm-offset-2">
+                    {alert.message &&
+                        <div className={`alert ${alert.type}`}>{alert.message}</div>
+                    }
+                    <Router history={history}>
+                        <div>
+                            <PrivateRoute exact path="/" component={HomePage} />
+                            <PrivateRoute exact path="/fuel-log" component={Log} />
+                            <Route path="/login" component={LoginPage} />
+                            <Route path="/register" component={RegisterPage} />
+                        </div>
+                    </Router>
+                </div>
+            </div>
         </div>
 
       </div>
@@ -84,4 +52,12 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  const { alert } = state;
+  return {
+    alert
+  };
+}
+
+const connectedApp = connect(mapStateToProps)(App);
+export { connectedApp as App };
