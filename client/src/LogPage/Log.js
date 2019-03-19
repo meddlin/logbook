@@ -10,6 +10,8 @@ class Log extends Component {
     this.sayHello = this.sayHello.bind(this);
   }
 
+  
+
   async sayHello() {
     const response = await fetch('/api/hello');
     const body = await response.json();
@@ -26,7 +28,11 @@ class Log extends Component {
   async submitForm() {
     console.log('in submit form...');
 
-    const response = await fetch('/api/Log/CreateLog', {
+    let config = {
+      apiUrl: 'https://localhost:5001'
+    }
+
+    const response = await fetch(`${config.apiUrl}/api/Log/CreateLog`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

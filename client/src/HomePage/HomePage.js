@@ -6,7 +6,7 @@ import { userActions } from '../_actions';
 
 class HomePage extends React.Component {
 	componentDidMount() {
-		this.props.dispatch(userActions.getAll());
+		/*this.props.dispatch(userActions.getAll());*/
 	}
 
 	render() {
