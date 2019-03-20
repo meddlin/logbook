@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logActions } from '../_actions';
 
+import Button from '@material-ui/core/Button';
+
 class Log extends Component {
   constructor(props) {
     super(props);
@@ -76,8 +78,8 @@ class Log extends Component {
         </div>
 
         <div id="controls">
-          <div id="btn-submit" onClick={this.submitForm}>Add</div>
-          <div id="btn-clear" onClick={this.clearForm}>Clear</div>
+          <Button variant="contained" id="btn-submit" onClick={this.submitForm}>Add</Button>
+          <Button variant="contained" id="btn-clear" onClick={this.clearForm}>Clear</Button>
         </div>
   		</div>
   	);
