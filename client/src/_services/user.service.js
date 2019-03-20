@@ -8,7 +8,7 @@ export const userService = {
 };
 
 const config = {
-	apiUrl: 'http://localhost:4000'
+	apiUrl: 'https://localhost:5001'
 };
 
 function login(username, password) {
@@ -18,7 +18,7 @@ function login(username, password) {
 		body: JSON.stringify({ username, password })
 	};
 
-	return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
+	return fetch(`${config.apiUrl}/api/users/authenticate`, requestOptions)
 		.then(handleResponse)
 		.then(user => {
 			// store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -35,7 +35,7 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/api/users/register`, requestOptions).then(handleResponse);
 }
 
 

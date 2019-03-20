@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { logActions } from '../_actions';
 
 class Log extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      logDate: '',
+      odometer: '',
+      tripometer: '',
+      fuelVolume: '',
+      price: ''
+    };
+
+    this.handleChange = this.handleChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.clearForm = this.clearForm.bind(this);
-    this.sayHello = this.sayHello.bind(this);
   }
 
-  async sayHello() {
-    const response = await fetch('/api/hello');
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    alert(body.express);
-    return body;
+  /*
+  * Handles moving DOM values into state values.
+  */
+  handleChange(e) {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
   }
 
   /**
@@ -25,66 +32,62 @@ class Log extends Component {
   */
   async submitForm() {
     console.log('in submit form...');
+    const { logDate, odometer, tripometer, fuelVolume, price } = this.state;
+    const { dispatch } = this.props;
 
-    const response = await fetch('/api/Log/CreateLog', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ logDate: new Date(), odometer: '99999', tripometer: '555', fuelVolume: '14.3', price: '36.75' })
-    });
-
-    const body = await response.text();
-
-    console.log(`clicked submitForm() ${body}`);
+    dispatch(logActions.createLog(
+      {
+        logDate: logDate, odometer: odometer, tripometer: tripometer, fuelVolume: fuelVolume, price: price 
+      }
+    ));
   }
 
   /**
   * Removes all values from the input elements on the form
   */
   clearForm() {
-    console.log('clicked clearForm() ');
+    this.setState({ logDate: '', odometer: '', tripometer: '', fuelVolume: '', price: '' });
   }
 
   render() {
+    const { logDate, odometer, tripometer, fuelVolume, price } = this.state;
+
   	return(
   		<div className="Log">
   			<div>
           <label className="label">Date</label>
-          <input type="text" /> 
+          <input type="text" name="logDate" value={logDate} onChange={this.handleChange} /> 
         </div>
         <div>
           <label className="label">ODO</label>
-          <input type="text" />
+          <input type="text" name="odometer" value={odometer} onChange={this.handleChange} />
         </div>
         <div>
           <label className="label">Trip</label>
-          <input type="text" />
+          <input type="text" name="tripometer" value={tripometer} onChange={this.handleChange} />
         </div>
         <div>
           <label className="label">Fuel Vol.</label>
-          <input type="text" />
+          <input type="text" name="fuelVolume" value={fuelVolume} onChange={this.handleChange} />
         </div>
         <div>
           <label className="label">Price</label>
-          <input type="text" />
+          <input type="text" name="price" value={price} onChange={this.handleChange} />
         </div>
 
         <div id="controls">
           <div id="btn-submit" onClick={this.submitForm}>Add</div>
           <div id="btn-clear" onClick={this.clearForm}>Clear</div>
-
-          <div id="btn-clear" onClick={this.sayHello}>Say Hello</div>
         </div>
   		</div>
   	);
   }
 }
 
-function mapStateToProps(state) {
+/*function mapStateToProps(state) {
     
     return { };
-}
+}*/
 
-const connectedLogPage = connect(mapStateToProps)(Log);
+const connectedLogPage = connect()(Log);
 export { connectedLogPage as Log };
