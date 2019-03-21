@@ -8,7 +8,7 @@ export const userService = {
 };
 
 const config = {
-	apiUrl: 'https://localhost:5001'
+	apiUrl: process.env.API_URL || 'https://localhost:5001'
 };
 
 function login(username, password) {
