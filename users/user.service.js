@@ -2,14 +2,14 @@
 	User Service -- Core business logic for handling user authentication and management
 */
 
-const config = require('config.json');
+/*const config = require('config.json');*/
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 const User = db.User;
 
 module.exports = {
-	authenticate,
+	/*authenticate,*/
 	getAll,
 	getById,
 	create,
@@ -17,7 +17,7 @@ module.exports = {
 	delete: _delete
 };
 
-async function authenticate({ username, password }) {
+/*async function authenticate({ username, password }) {
 	debugger;
 	const user = await User.findOne({ username });
 	if (user && bcrypt.compareSync(password, user.hash)) {
@@ -29,7 +29,7 @@ async function authenticate({ username, password }) {
 		};
 	}
 }
-
+*/
 async function getAll() {
 	return await User.find().select('-hash');
 }

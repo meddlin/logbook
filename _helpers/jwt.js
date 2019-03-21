@@ -2,7 +2,7 @@
 	JWT Handler (middleware)
 */
 
-const expressJwt = require('express-jwt');
+/*const expressJwt = require('express-jwt');
 const config = require('config.json');
 const userService = require('../users/user.service');
 
@@ -17,7 +17,7 @@ function jwt() {
 			'/users/register'
 		]
 	});
-}
+}*/
 
 async function isRevoked(req, payload, done) {
 	const user = await userService.getById(payload.sub);
