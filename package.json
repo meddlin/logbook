@@ -1,14 +1,23 @@
 {
-  "name": "server",
+  "name": "logbook",
   "version": "1.0.0",
-  "description": "The proxy.",
+  "description": "Logbook front-end",
   "main": "server.js",
   "scripts": {
-    "start": "cd client && npm run start",
-    "client": "cd client && npm run start",
-    "dev": "npm run client",
-    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
@@ -18,9 +27,18 @@
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
     "express-session": "^1.15.6",
+    "history": "^4.9.0",
     "mongoose": "^5.4.17",
     "passport": "^0.4.0",
     "passport-auth0": "^1.1.0",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "^2.1.8",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
     "request": "^2.88.0",
     "rootpath": "^0.1.2"
   },
