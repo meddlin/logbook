@@ -2,7 +2,6 @@
   "name": "logbook",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3500/",
   "dependencies": {
     "history": "^4.9.0",
     "react": "^16.8.3",
