@@ -1,8 +1,8 @@
 {
   "name": "logbook",
   "version": "1.0.0",
+  "private": true,
   "description": "Logbook front-end",
-  "main": "server.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
