@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logActions } from '../_actions';
 
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
 class Log extends Component {
   constructor(props) {
     super(props);
@@ -56,28 +60,46 @@ class Log extends Component {
   		<div className="Log">
   			<div>
           <label className="label">Date</label>
-          <input type="text" name="logDate" value={logDate} onChange={this.handleChange} /> 
+          {/*<input type="text" name="logDate" value={logDate} onChange={this.handleChange} />*/}
+          <TextField id="fuelLog_logDate"
+            label="logDate" value={logDate} onChange={this.handleChange} margin="normal" />
         </div>
+
         <div>
           <label className="label">ODO</label>
-          <input type="text" name="odometer" value={odometer} onChange={this.handleChange} />
+          {/*<input type="text" name="odometer" value={odometer} onChange={this.handleChange} />*/}
+          <TextField id="fuelLog_odometer"
+            label="logDate" value={odometer} onChange={this.handleChange} margin="normal" />
         </div>
+
         <div>
           <label className="label">Trip</label>
-          <input type="text" name="tripometer" value={tripometer} onChange={this.handleChange} />
+          {/*<input type="text" name="tripometer" value={tripometer} onChange={this.handleChange} />*/}
+          <TextField id="fuelLog_tripometer"
+            label="logDate" value={tripometer} onChange={this.handleChange} margin="normal" />
         </div>
+
         <div>
           <label className="label">Fuel Vol.</label>
-          <input type="text" name="fuelVolume" value={fuelVolume} onChange={this.handleChange} />
+          {/*<input type="text" name="fuelVolume" value={fuelVolume} onChange={this.handleChange} />*/}
+          <TextField id="fuelLog_fuelVolume"
+            label="logDate" value={fuelVolume} onChange={this.handleChange} margin="normal" />
+
         </div>
         <div>
           <label className="label">Price</label>
-          <input type="text" name="price" value={price} onChange={this.handleChange} />
+          {/*<input type="text" name="price" value={price} onChange={this.handleChange} />*/}
+          <TextField id="fuelLog_price"
+            label="logDate" value={price} onChange={this.handleChange} margin="normal" />
+
         </div>
 
         <div id="controls">
-          <div id="btn-submit" onClick={this.submitForm}>Add</div>
-          <div id="btn-clear" onClick={this.clearForm}>Clear</div>
+          {/*<div id="btn-submit" onClick={this.submitForm}>Add</div>*/}
+          <Button variant="contained" color="primary" onClick={this.submitForm}>Add</Button>
+
+          {/*<div id="btn-clear" onClick={this.clearForm}>Clear</div>*/}
+          <Button variant="contained" onClick={this.clearForm}>Clear</Button>
         </div>
   		</div>
   	);
