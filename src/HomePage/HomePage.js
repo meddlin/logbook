@@ -30,6 +30,9 @@ class HomePage extends React.Component {
                             <Link to="/fuel-log">Add Log</Link>
                         </Button>
                         <Button size="medium" color="default">
+                            <Link to="/list">Logs</Link>
+                        </Button>
+                        <Button size="medium" color="default">
                             <Link to="/login">Logout</Link>
                         </Button>
                     </Toolbar>

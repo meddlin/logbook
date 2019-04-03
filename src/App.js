@@ -9,6 +9,7 @@ import { HomePage } from './HomePage/HomePage';
 import { LoginPage } from './LoginPage/LoginPage';
 import { RegisterPage } from './RegisterPage/RegisterPage';
 import { Log } from './LogPage/Log';
+import { LogList } from './LogListPage/LogListPage';
 
 import './App.css';
 
@@ -38,6 +39,7 @@ class App extends Component {
                     <Router history={history}>
                         <div>
                             <PrivateRoute exact path="/" component={HomePage} />
+                            <PrivateRoute exact path="/list" component={LogList} />
                             <PrivateRoute exact path="/fuel-log" component={Log} />
                             <Route path="/login" component={LoginPage} />
                             <Route path="/register" component={RegisterPage} />
