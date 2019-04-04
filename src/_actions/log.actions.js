@@ -7,11 +7,11 @@ export const logActions = {
 	createLog
 };
 
-function createLog(fuelLog) {
+function createLog(userId, fuelLog) {
 	return dispatch => {
-        dispatch(request(fuelLog));
+        dispatch(request(userId, fuelLog));
 
-        logService.createLog(fuelLog)
+        logService.createLog(userId, fuelLog)
             .then(
                 fuelLog => { 
                     dispatch(success());

@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import ReactTable from 'react-table';
 
 class LogList extends Component {
   constructor(props) {

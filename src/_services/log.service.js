@@ -9,7 +9,7 @@ const config = {
 };
 
 
-function createLog(fuelLog) {
+function createLog(userId, fuelLog) {
 	let user = JSON.parse(localStorage.getItem('user'));
 
     const requestOptions = {
@@ -19,7 +19,7 @@ function createLog(fuelLog) {
         body: JSON.stringify(fuelLog)
     };
 
-    return fetch(`${config.apiUrl}/api/Log/CreateLog`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/api/Log/CreateLog?userId=${userId}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
