@@ -35,7 +35,6 @@ class Log extends Component {
   * Submits form data (via state) to the API
   */
   async submitForm() {
-    console.log('in submit form...');
     const { logDate, odometer, tripometer, fuelVolume, price } = this.state;
     const { dispatch } = this.props;
 

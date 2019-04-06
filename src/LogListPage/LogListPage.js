@@ -12,8 +12,23 @@ class LogList extends Component {
     super(props);
 
     this.state = {
+      logs: {}
     };
 
+    this.getLogs = this.getLogs.bind(this);
+  }
+
+
+  async getLogs() {
+    const { dispatch } = this.props;
+    let beginDate = new Date('2019-03-01');
+    beginDate = beginDate.toLocaleDateString("en-US");
+    let endDate = new Date();
+    endDate = endDate.toLocaleDateString("en-US");
+
+    let result = await dispatch(logActions.getLogListInDateRange( beginDate, endDate ));
+    this.setState({ logs: result });
+    console.log(result);
   }
 
   render() {
@@ -35,6 +50,8 @@ class LogList extends Component {
   	return(
   		<div>
   			<Typography variant="h4" gutterBottom>Logs</Typography>
+
+        <div onClick={this.getLogs}>GetLogs</div>
 
         <ul>
           {data.map(d => <li>Name: {d.name} | Age: {d.age}</li>)}
