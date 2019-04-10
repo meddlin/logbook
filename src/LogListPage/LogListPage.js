@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logActions } from '../_actions';
+import { store } from '../_helpers';
 
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -18,6 +19,9 @@ class LogList extends Component {
     this.getLogs = this.getLogs.bind(this);
   }
 
+  componentDidMount() {
+    this.getLogs();
+  }
 
   async getLogs() {
     const { dispatch } = this.props;
@@ -26,45 +30,30 @@ class LogList extends Component {
     let endDate = new Date();
     endDate = endDate.toLocaleDateString("en-US");
 
-    let result = await dispatch(logActions.getLogListInDateRange( beginDate, endDate ));
-    this.setState({ logs: result });
-    console.log(result);
+    store.dispatch(logActions.getLogListInDateRange( beginDate, endDate ));
   }
 
   render() {
-
-    const data = [{
-      name: 'Tanner Linsley',
-      age: 26
-    }];
- 
-    const columns = [{
-        Header: 'Name',
-        accessor: 'name' // String-based value accessors!
-      }, {
-        Header: 'Age',
-        accessor: 'age',
-        Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
-      }];
+    const { logs } = this.props;
 
   	return(
   		<div>
   			<Typography variant="h4" gutterBottom>Logs</Typography>
 
-        <div onClick={this.getLogs}>GetLogs</div>
-
         <ul>
-          {data.map(d => <li>Name: {d.name} | Age: {d.age}</li>)}
+          {logs ? (logs.map(l => <li>Log: {l.id} | Date: {l.logDate}</li>)) : ''}
         </ul>
+        
   		</div>
   	);
   }
 }
 
-/*function mapStateToProps(state) {
-    
-    return { };
-}*/
+function mapStateToProps(state) {
+    return {
+      logs: state.log.fuelLogs
+    };
+}
 
-const connectedLogListPage = connect()(LogList);
+const connectedLogListPage = connect(mapStateToProps)(LogList);
 export { connectedLogListPage as LogList };

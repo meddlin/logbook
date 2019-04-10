@@ -1,4 +1,4 @@
-import { userConstants } from '../_constants';
+import { logConstants } from '../_constants';
 import { logService } from '../_services';
 import { alertActions } from './';
 import { history } from '../_helpers';
@@ -28,9 +28,9 @@ function createLog(userId, fuelLog) {
             );
     };
 
-    function request(fuelLog) { return { type: userConstants.REGISTER_REQUEST, fuelLog } }
-    function success(fuelLog) { return { type: userConstants.REGISTER_SUCCESS, fuelLog } }
-    function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
+    function request(fuelLog) { return { type: logConstants.CREATE_LOG_REQUEST, fuelLog } }
+    function success(fuelLog) { return { type: logConstants.CREATE_LOG_SUCCESS, fuelLog } }
+    function failure(error) { return { type: logConstants.CREATE_LOG_FAILURE, error } }
 }
 
 /**
@@ -42,8 +42,8 @@ function getLogListInDateRange(beginDate, endDate) {
 
         logService.getLogListInDateRange(beginDate, endDate)
             .then(
-                result => {
-                    dispatch(success());
+                fuelLogs => {
+                    dispatch(success(fuelLogs));
                     dispatch(alertActions.success('List retrieved.'));
                 },
                 error => {
@@ -53,7 +53,7 @@ function getLogListInDateRange(beginDate, endDate) {
             );
     };
 
-    function request(fuelLog) { return { type: userConstants.REGISTER_REQUEST, fuelLog } }
-    function success(fuelLog) { return { type: userConstants.REGISTER_SUCCESS, fuelLog } }
-    function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
+    function request(fuelLog) { return { type: logConstants.LOG_LIST_BY_DATE_REQUEST, fuelLog } }
+    function success(fuelLogs) { return { type: logConstants.LOG_LIST_BY_DATE_SUCCESS, fuelLogs } }
+    function failure(error) { return { type: logConstants.LOG_LIST_BY_DATE_FAILURE, error } }
 }
