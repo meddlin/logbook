@@ -41,9 +41,17 @@ class LogList extends Component {
   			<Typography variant="h4" gutterBottom>Logs</Typography>
 
         <ul>
-          {logs ? (logs.map(l => <li>Log: {l.id} | Date: {l.logDate}</li>)) : ''}
+          {logs ? (logs.map(l => 
+            <li key={l.id}>
+              Date: {new Date(l.logDate).toLocaleDateString("en-US")}, 
+              Odometer: {l.odometer}, 
+              Tripometer: {l.tripometer}, 
+              Fuel: {l.fuelVolume}, 
+              Price: {l.price} 
+            </li>)) 
+          : ''}
         </ul>
-        
+
   		</div>
   	);
   }
