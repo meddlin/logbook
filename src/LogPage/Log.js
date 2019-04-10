@@ -35,15 +35,13 @@ class Log extends Component {
   * Submits form data (via state) to the API
   */
   async submitForm() {
-    console.log('in submit form...');
     const { logDate, odometer, tripometer, fuelVolume, price } = this.state;
     const { dispatch } = this.props;
 
-    dispatch(logActions.createLog(
-      {
-        logDate: logDate, odometer: odometer, tripometer: tripometer, fuelVolume: fuelVolume, price: price 
-      }
-    ));
+    let userId = JSON.parse(localStorage.user).id;
+    let fuelLog = { logDate: logDate, odometer: odometer, tripometer: tripometer, fuelVolume: fuelVolume, price: price };
+
+    dispatch(logActions.createLog( userId, fuelLog ));
   }
 
   /**
@@ -60,45 +58,42 @@ class Log extends Component {
   		<div className="Log">
   			<div>
           <label className="label">Date</label>
-          {/*<input type="text" name="logDate" value={logDate} onChange={this.handleChange} />*/}
           <TextField id="fuelLog_logDate"
+            name="logDate"
             label="logDate" value={logDate} onChange={this.handleChange} margin="normal" />
         </div>
 
         <div>
           <label className="label">ODO</label>
-          {/*<input type="text" name="odometer" value={odometer} onChange={this.handleChange} />*/}
           <TextField id="fuelLog_odometer"
-            label="logDate" value={odometer} onChange={this.handleChange} margin="normal" />
+            name="odometer"
+            label="odometer" value={odometer} onChange={this.handleChange} margin="normal" />
         </div>
 
         <div>
           <label className="label">Trip</label>
-          {/*<input type="text" name="tripometer" value={tripometer} onChange={this.handleChange} />*/}
           <TextField id="fuelLog_tripometer"
-            label="logDate" value={tripometer} onChange={this.handleChange} margin="normal" />
+            name="tripometer"
+            label="tripometer" value={tripometer} onChange={this.handleChange} margin="normal" />
         </div>
 
         <div>
           <label className="label">Fuel Vol.</label>
-          {/*<input type="text" name="fuelVolume" value={fuelVolume} onChange={this.handleChange} />*/}
           <TextField id="fuelLog_fuelVolume"
-            label="logDate" value={fuelVolume} onChange={this.handleChange} margin="normal" />
+            name="fuelVolume"
+            label="fuelVolume" value={fuelVolume} onChange={this.handleChange} margin="normal" />
 
         </div>
         <div>
           <label className="label">Price</label>
-          {/*<input type="text" name="price" value={price} onChange={this.handleChange} />*/}
           <TextField id="fuelLog_price"
-            label="logDate" value={price} onChange={this.handleChange} margin="normal" />
+            name="price"
+            label="price" value={price} onChange={this.handleChange} margin="normal" />
 
         </div>
 
         <div id="controls">
-          {/*<div id="btn-submit" onClick={this.submitForm}>Add</div>*/}
           <Button variant="contained" color="primary" onClick={this.submitForm}>Add</Button>
-
-          {/*<div id="btn-clear" onClick={this.clearForm}>Clear</div>*/}
           <Button variant="contained" onClick={this.clearForm}>Clear</Button>
         </div>
   		</div>

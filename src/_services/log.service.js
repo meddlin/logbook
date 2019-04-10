@@ -1,15 +1,18 @@
 import { authHeader } from '../_helpers';
 
 export const logService = {
-	createLog
+	createLog,
+    getLogListInDateRange
 };
 
 const config = {
 	apiUrl: process.env.REACT_APP_API_URL || 'https://localhost:5001'
 };
 
-
-function createLog(fuelLog) {
+/**
+* 
+*/
+function createLog(userId, fuelLog) {
 	let user = JSON.parse(localStorage.getItem('user'));
 
     const requestOptions = {
@@ -19,9 +22,30 @@ function createLog(fuelLog) {
         body: JSON.stringify(fuelLog)
     };
 
-    return fetch(`${config.apiUrl}/api/Log/CreateLog`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/api/Log/CreateLog?userId=${userId}`, requestOptions).then(handleResponse);
 }
 
+/**
+* 
+*/
+function getLogListInDateRange(beginDate, endDate) {
+    let user = JSON.parse(localStorage.getItem('user'));
+
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Authorization': `Bearer ${user.token}`, 'Content-Type': 'application/json' }
+    };
+
+    return fetch(`${config.apiUrl}/api/Log/GetLogListInDateRange?userId=${user.id}&beginDate=${beginDate}&endDate=${endDate}`, requestOptions)
+            .then(handleResponse)
+            .then(logs => {
+                return logs;
+            });
+}
+
+/**
+* 
+*/
 function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
