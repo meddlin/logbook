@@ -1,17 +1,10 @@
-.App {
+
+#log-form-list {
   display: flex;
   flex-direction: column;
-
-  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
-
-  .App > div {
-    margin: 2em;
-  }
-
-    .App > div > label {
-      margin-right: 0.5em;
-    }
 
 #controls {
   display: flex;

@@ -3,8 +3,36 @@ import { connect } from 'react-redux';
 import { logActions } from '../_actions';
 
 import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+  layout: {
+    width: 'auto',
+    marginLeft: theme.spacing.unit * 2,
+    marginRight: theme.spacing.unit * 2,
+    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
+      width: 600,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 2,
+    [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
+      marginTop: theme.spacing.unit * 6,
+      marginBottom: theme.spacing.unit * 6,
+      padding: theme.spacing.unit * 3,
+    },
+  },
+  button: {
+    marginTop: theme.spacing.unit * 2,
+    marginLeft: theme.spacing.unit,
+  },
+});
 
 class Log extends Component {
   constructor(props) {
@@ -52,49 +80,40 @@ class Log extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     const { logDate, odometer, tripometer, fuelVolume, price } = this.state;
 
   	return(
   		<div className="Log">
-  			<div>
-          <label className="label">Date</label>
-          <TextField id="fuelLog_logDate"
-            name="logDate"
-            label="logDate" value={logDate} onChange={this.handleChange} margin="normal" />
-        </div>
+        <main className={classes.layout}>
+          <Paper className={classes.paper}>
+            <div id="log-form-list">
+              <TextField id="fuelLog_logDate"
+                name="logDate"
+                label="Log Date" value={logDate} onChange={this.handleChange} margin="normal" />
 
-        <div>
-          <label className="label">ODO</label>
-          <TextField id="fuelLog_odometer"
-            name="odometer"
-            label="odometer" value={odometer} onChange={this.handleChange} margin="normal" />
-        </div>
+              <TextField id="fuelLog_odometer"
+                name="odometer"
+                label="Odometer" value={odometer} onChange={this.handleChange} margin="normal" />
 
-        <div>
-          <label className="label">Trip</label>
-          <TextField id="fuelLog_tripometer"
-            name="tripometer"
-            label="tripometer" value={tripometer} onChange={this.handleChange} margin="normal" />
-        </div>
+              <TextField id="fuelLog_tripometer"
+                name="tripometer"
+                label="Tripometer" value={tripometer} onChange={this.handleChange} margin="normal" />
 
-        <div>
-          <label className="label">Fuel Vol.</label>
-          <TextField id="fuelLog_fuelVolume"
-            name="fuelVolume"
-            label="fuelVolume" value={fuelVolume} onChange={this.handleChange} margin="normal" />
+              <TextField id="fuelLog_fuelVolume"
+                name="fuelVolume"
+                label="Fuel Volume" value={fuelVolume} onChange={this.handleChange} margin="normal" />
 
-        </div>
-        <div>
-          <label className="label">Price</label>
-          <TextField id="fuelLog_price"
-            name="price"
-            label="price" value={price} onChange={this.handleChange} margin="normal" />
-
-        </div>
+              <TextField id="fuelLog_price"
+                name="price"
+                label="Price" value={price} onChange={this.handleChange} margin="normal" />
+            </div>
+          </Paper>
+        </main>
 
         <div id="controls">
-          <Button variant="contained" color="primary" onClick={this.submitForm}>Add</Button>
-          <Button variant="contained" onClick={this.clearForm}>Clear</Button>
+          <Button className={classes.button} variant="contained" color="primary" onClick={this.submitForm}>Add</Button>
+          <Button className={classes.button} variant="contained" onClick={this.clearForm}>Clear</Button>
         </div>
   		</div>
   	);
@@ -106,5 +125,5 @@ class Log extends Component {
     return { };
 }*/
 
-const connectedLogPage = connect()(Log);
+const connectedLogPage = connect()(withStyles(styles)(Log));
 export { connectedLogPage as Log };

@@ -11,13 +11,28 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+const styles = theme => ({
+  '@global': {
+    body: {
+      backgroundColor: theme.palette.common.white,
+    },
+  },
+
+  heroContent: {
+    maxWidth: 600,
+    margin: '0 auto',
+    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+  },
+
+});
+
 class HomePage extends React.Component {
 	componentDidMount() {
 		/*this.props.dispatch(userActions.getAll());*/
 	}
 
 	render() {
-		const { user, users } = this.props;
+		const { classes, user, users } = this.props;
 		return (
             <div>
                 <AppBar position="static">
@@ -37,26 +52,26 @@ class HomePage extends React.Component {
                         </Button>
                     </Toolbar>
                 </AppBar>
-    			<div className="col-md-6 col-md-offset-3">
 
-                    <h1>Hi {user.firstName}!</h1>
-                    <p>You're logged in with React & JWT!!</p>
-                    <h3>Users from secure api end point:</h3>
+                <div className={classes.heroContent}>
+                    <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                        Hi {user.firstName}!
+                    </Typography>
+                    <Typography variant="h6" align="center" color="textSecondary" component="p">
+                        You're logged in with React & JWT!!
+                    </Typography>
 
                     { users.loading && <em>Loading users...</em> }
                     { users.error && <span className="text-danger">ERROR: {users.error}</span> }
                     { users.items &&
-                    	<ul>
-                    		{users.items.map( (user, index) => 
-                    			<li key={user.id}>
-                    				{user.firstName + ' ' + user.lastName}
-                    			</li>
-                    		)}
-                    	</ul>
+                        <ul>
+                            {users.items.map( (user, index) => 
+                                <li key={user.id}>
+                                    {user.firstName + ' ' + user.lastName}
+                                </li>
+                            )}
+                        </ul>
                     }
-                    <p>
-                    	<Link to="/login">Logout</Link>
-                    </p>
                 </div>
             </div>
 		);
@@ -69,5 +84,5 @@ function mapStateToProps(state) {
 	return { user, users };
 }
 
-const connectedHomePage = connect(mapStateToProps)(HomePage);
+const connectedHomePage = connect(mapStateToProps)(withStyles(styles)(HomePage));
 export { connectedHomePage as HomePage };
