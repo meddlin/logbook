@@ -8,6 +8,7 @@ import { PrivateRoute } from './_components';
 import { HomePage } from './HomePage/HomePage';
 import { LoginPage } from './LoginPage/LoginPage';
 import { RegisterPage } from './RegisterPage/RegisterPage';
+import Pricing from './PricingPage/Pricing';
 import { Log } from './LogPage/Log';
 import { LogList } from './LogListPage/LogListPage';
 
@@ -39,6 +40,7 @@ class App extends Component {
                 <PrivateRoute exact path="/fuel-log" component={Log} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
+                <Route path="/pricing" component={Pricing} />
             </div>
         </Router>
       </div>

@@ -1,4 +1,15 @@
 
+.horizontal-items {
+  display: flex;
+  flex-direction: row;
+}
+
+.list-nostyle {
+    list-style: none;
+    padding: 0;
+    margin: 1em;
+}
+
 #log-form-list {
   display: flex;
   flex-direction: column;
