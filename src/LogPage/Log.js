@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { logActions } from '../_actions';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -88,11 +89,52 @@ class Log extends Component {
         <main className={classes.layout}>
           <Paper className={classes.paper}>
             <div id="log-form-list">
-              <TextField id="fuelLog_logDate"
+              <Formik
+                initialValues={{ logDate: '', odometer: '', tripometer: '', fuelVolume: '', price: '' }}
+                validate = {values => {
+                  let errors = {};
+                  if (!values.logDate) errors.logDate = 'Required';
+                  if (!values.odometer) errors.odometer = 'Required';
+                  if (!values.tripometer) errors.tripometer = 'Required';
+                  if (!values.fuelVolume) errors.fuelVolume = 'Required';
+                  if (!values.price) errors.price = 'Required';
+                  return errors;
+                }}
+                onSubmit = {(values, { setSubmitting }) => {
+                  setTimeout(() => {
+                    alert(JSON.stringify(values, null, 2));
+                    setSubmitting(false);
+                  }, 400);
+                }}
+              >
+                {({ isSubmitting }) => (
+                  <Form>
+                    <Field type="logDate" name="logDate" component={TextField} />
+                    <ErrorMessage name="logDate" component="div" />
+                    <Field type="odometer" name="odometer" component={TextField} />
+                    <ErrorMessage name="odometer" component="div" />
+
+                    <Field type="tripometer" name="tripometer" component={TextField} />
+                    <ErrorMessage name="tripometer" component="div" />
+                    <Field type="fuelVolume" name="fuelVolume" component={TextField} />
+                    <ErrorMessage name="fuelVolume" component="div" />
+                    <Field type="price" name="price" component={TextField} />
+                    <ErrorMessage name="price" component="div" />
+
+                    <button type="submit" disabled={isSubmitting}>
+                      Submit
+                    </button>
+                  </Form>
+                )}
+              </Formik>
+
+              <TextField 
+                id="fuelLog_logDate"
                 name="logDate"
                 label="Log Date" value={logDate} onChange={this.handleChange} margin="normal" />
 
-              <TextField id="fuelLog_odometer"
+              <TextField 
+                id="fuelLog_odometer"
                 name="odometer"
                 label="Odometer" value={odometer} onChange={this.handleChange} margin="normal" />
 

@@ -37,7 +37,7 @@ class App extends Component {
 
     const linkStyle = {
       color: 'white',
-      'text-decoration': 'none'
+      textDecoration: 'none'
     };
 
     return (

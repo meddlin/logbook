@@ -23,7 +23,7 @@
     "@material-ui/icons": "^3.0.2",
     "bcryptjs": "^2.4.3",
     "dotenv": "^6.2.0",
-    "formik": "^1.5.1",
+    "formik": "^1.5.4",
     "history": "^4.9.0",
     "mongoose": "^5.4.17",
     "passport": "^0.4.0",
