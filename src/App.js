@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import { history } from './_helpers';
 import { alertActions } from './_actions';
@@ -28,12 +35,34 @@ class App extends Component {
   render() {
     const { alert } = this.props;
 
+    const linkStyle = {
+      color: 'white',
+      'text-decoration': 'none'
+    };
+
     return (
       <div className="App">
         {
           alert.message && <div className={`alert ${alert.type}`}>{alert.message.message}</div>
         }
         <Router history={history}>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton color="inherit" aria-label="Menu">
+                        <MenuIcon />
+                    </IconButton>
+
+                    <Button size="medium" color="default">
+                        <Link to="/fuel-log" style={linkStyle}>Add Log</Link>
+                    </Button>
+                    <Button size="medium" color="default">
+                        <Link to="/list" style={linkStyle}>Logs</Link>
+                    </Button>
+                    <Button size="medium" color="default">
+                        <Link to="/login" style={linkStyle}>Logout</Link>
+                    </Button>
+                </Toolbar>
+            </AppBar>
             <div>
                 <PrivateRoute exact path="/" component={HomePage} />
                 <PrivateRoute exact path="/list" component={LogList} />
