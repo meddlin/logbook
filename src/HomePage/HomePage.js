@@ -31,8 +31,6 @@ class HomePage extends React.Component {
 		const { classes, user, users } = this.props;
 		return (
             <div>
-                
-
                 <div className={classes.heroContent}>
                     <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                         Hi {user.firstName}!

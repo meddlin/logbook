@@ -35,6 +35,11 @@ class App extends Component {
   render() {
     const { alert } = this.props;
 
+    const linkStyle = {
+      color: 'white',
+      'text-decoration': 'none'
+    };
+
     return (
       <div className="App">
         {
@@ -48,13 +53,13 @@ class App extends Component {
                     </IconButton>
 
                     <Button size="medium" color="default">
-                        <Link to="/fuel-log">Add Log</Link>
+                        <Link to="/fuel-log" style={linkStyle}>Add Log</Link>
                     </Button>
                     <Button size="medium" color="default">
-                        <Link to="/list">Logs</Link>
+                        <Link to="/list" style={linkStyle}>Logs</Link>
                     </Button>
                     <Button size="medium" color="default">
-                        <Link to="/login">Logout</Link>
+                        <Link to="/login" style={linkStyle}>Logout</Link>
                     </Button>
                 </Toolbar>
             </AppBar>
