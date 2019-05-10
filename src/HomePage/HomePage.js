@@ -4,12 +4,8 @@ import { connect } from 'react-redux';
 import { userActions } from '../_actions';
 
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = theme => ({
   '@global': {
@@ -35,23 +31,7 @@ class HomePage extends React.Component {
 		const { classes, user, users } = this.props;
 		return (
             <div>
-                <AppBar position="static">
-                    <Toolbar>
-                        <IconButton color="inherit" aria-label="Menu">
-                            <MenuIcon />
-                        </IconButton>
-
-                        <Button size="medium" color="default">
-                            <Link to="/fuel-log">Add Log</Link>
-                        </Button>
-                        <Button size="medium" color="default">
-                            <Link to="/list">Logs</Link>
-                        </Button>
-                        <Button size="medium" color="default">
-                            <Link to="/login">Logout</Link>
-                        </Button>
-                    </Toolbar>
-                </AppBar>
+                
 
                 <div className={classes.heroContent}>
                     <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>

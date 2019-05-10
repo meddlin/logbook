@@ -40,7 +40,6 @@ class LogList extends Component {
 
   	return(
   		<div>
-  			<Typography variant="h4" gutterBottom>Logs</Typography>
 
         <ul className="list-nostyle">
           {logs ? (logs.map(l => 
