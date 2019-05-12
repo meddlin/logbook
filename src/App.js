@@ -16,7 +16,7 @@ import { HomePage } from './HomePage/HomePage';
 import { LoginPage } from './LoginPage/LoginPage';
 import { RegisterPage } from './RegisterPage/RegisterPage';
 import Pricing from './PricingPage/Pricing';
-import { Log } from './LogPage/Log';
+import { LogForm } from './LogPage/LogForm';
 import { LogList } from './LogListPage/LogListPage';
 
 import './App.css';
@@ -66,7 +66,7 @@ class App extends Component {
             <div>
                 <PrivateRoute exact path="/" component={HomePage} />
                 <PrivateRoute exact path="/list" component={LogList} />
-                <PrivateRoute exact path="/fuel-log" component={Log} />
+                <PrivateRoute exact path="/fuel-log" component={LogForm} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/pricing" component={Pricing} />

@@ -38,7 +38,8 @@
     "redux-thunk": "^2.2.0",
     "request": "^2.88.0",
     "rootpath": "^0.1.2",
-    "typeface-roboto": "^0.0.54"
+    "typeface-roboto": "^0.0.54",
+    "yup": "^0.27.0"
   },
   "devDependencies": {
     "concurrently": "^4.0.1",

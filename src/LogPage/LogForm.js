@@ -2,40 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { logActions } from '../_actions';
+import * as Yup from 'yup';
 
 import { withStyles } from '@material-ui/core/styles';
+import styles from './styles';
+import { CustomLogForm } from './form';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-const styles = theme => ({
-  layout: {
-    width: 'auto',
-    marginLeft: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit * 2,
-    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
-      width: 600,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  paper: {
-    marginTop: theme.spacing.unit * 3,
-    marginBottom: theme.spacing.unit * 3,
-    padding: theme.spacing.unit * 2,
-    [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
-      marginTop: theme.spacing.unit * 6,
-      marginBottom: theme.spacing.unit * 6,
-      padding: theme.spacing.unit * 3,
-    },
-  },
-  button: {
-    marginTop: theme.spacing.unit * 2,
-    marginLeft: theme.spacing.unit,
-  },
-});
-
-class Log extends Component {
+class LogForm extends Component {
   constructor(props) {
     super(props);
 
@@ -84,51 +60,37 @@ class Log extends Component {
     const { classes } = this.props;
     const { logDate, odometer, tripometer, fuelVolume, price } = this.state;
 
+    const values = { logDate: "", odometer: "", tripometer: "", fuelVolume: "", price: "" };
+    const validationSchema = Yup.object(
+    {
+      logDate: Yup.string("Enter a log date")
+                  .required("Log date is required"),
+      odometer: Yup.string("Enter your odometer reading")
+                  .required("Odometer is required"),
+      tripometer: Yup.string("")
+                  .required("Enter your password"),
+      fuelVolume: 
+        Yup.string("Enter your password")
+          .required("Confirm your password")
+          .oneOf([Yup.ref("password")], "Password does not match"),
+      price: Yup.string("Price is needed.")
+                .required("Please enter the price.")
+    });
+
+
   	return(
+      
   		<div className="Log">
         <main className={classes.layout}>
           <Paper className={classes.paper}>
             <div id="log-form-list">
-              <Formik
-                initialValues={{ logDate: '', odometer: '', tripometer: '', fuelVolume: '', price: '' }}
-                validate = {values => {
-                  let errors = {};
-                  if (!values.logDate) errors.logDate = 'Required';
-                  if (!values.odometer) errors.odometer = 'Required';
-                  if (!values.tripometer) errors.tripometer = 'Required';
-                  if (!values.fuelVolume) errors.fuelVolume = 'Required';
-                  if (!values.price) errors.price = 'Required';
-                  return errors;
-                }}
-                onSubmit = {(values, { setSubmitting }) => {
-                  setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                  }, 400);
-                }}
-              >
-                {({ isSubmitting }) => (
-                  <Form>
-                    <Field type="logDate" name="logDate" component={TextField} />
-                    <ErrorMessage name="logDate" component="div" />
-                    <Field type="odometer" name="odometer" component={TextField} />
-                    <ErrorMessage name="odometer" component="div" />
+              <Formik 
+                render={props => <CustomLogForm {...props} /> }
+                intialValues={values}
+                validationSchema={validationSchema}
+              />
 
-                    <Field type="tripometer" name="tripometer" component={TextField} />
-                    <ErrorMessage name="tripometer" component="div" />
-                    <Field type="fuelVolume" name="fuelVolume" component={TextField} />
-                    <ErrorMessage name="fuelVolume" component="div" />
-                    <Field type="price" name="price" component={TextField} />
-                    <ErrorMessage name="price" component="div" />
-
-                    <button type="submit" disabled={isSubmitting}>
-                      Submit
-                    </button>
-                  </Form>
-                )}
-              </Formik>
-
-              <TextField 
+              {/*<TextField 
                 id="fuelLog_logDate"
                 name="logDate"
                 label="Log Date" value={logDate} onChange={this.handleChange} margin="normal" />
@@ -148,7 +110,8 @@ class Log extends Component {
 
               <TextField id="fuelLog_price"
                 name="price"
-                label="Price" value={price} onChange={this.handleChange} margin="normal" />
+                label="Price" value={price} onChange={this.handleChange} margin="normal" />*/}
+
             </div>
           </Paper>
         </main>
@@ -167,5 +130,5 @@ class Log extends Component {
     return { };
 }*/
 
-const connectedLogPage = connect()(withStyles(styles)(Log));
-export { connectedLogPage as Log };
+const connectedLogPage = connect()(withStyles(styles)(LogForm));
+export { connectedLogPage as LogForm };
