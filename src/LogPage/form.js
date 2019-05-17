@@ -20,7 +20,7 @@ export const CustomLogForm = (props) => {
 	};
 
 	return (
-		<form onSubmit={() => { alert("submitted") }}>
+		<form onSubmit={handleSubmit}>
 			<TextField 
                 id="logDate"
                 name="logDate"

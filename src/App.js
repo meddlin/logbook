@@ -16,6 +16,7 @@ import { HomePage } from './HomePage/HomePage';
 import { LoginPage } from './LoginPage/LoginPage';
 import { RegisterPage } from './RegisterPage/RegisterPage';
 import Pricing from './PricingPage/Pricing';
+import { FormikForm } from './LogPage/LogFormik';
 import { LogForm } from './LogPage/LogForm';
 import { LogList } from './LogListPage/LogListPage';
 
@@ -66,7 +67,8 @@ class App extends Component {
             <div>
                 <PrivateRoute exact path="/" component={HomePage} />
                 <PrivateRoute exact path="/list" component={LogList} />
-                <PrivateRoute exact path="/fuel-log" component={LogForm} />
+                <PrivateRoute exact path="/fuel-log" component={FormikForm} />
+                {/* <PrivateRoute exact path="/fuel-log" component={LogForm} /> */}
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/pricing" component={Pricing} />
