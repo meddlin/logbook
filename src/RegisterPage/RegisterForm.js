@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { userActions } from '../_actions';
 import { PrimaryButton, DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import styles from '../styling/styles';
 
 class RegisterForm extends React.Component {
@@ -23,7 +24,6 @@ class RegisterForm extends React.Component {
 
         return (
             <Form>
-
                 <TextField 
                     name="firstName"
                     label="First Name"
@@ -67,6 +67,7 @@ class RegisterForm extends React.Component {
                         onClick={handleReset} 
                     />
                 </div>
+                
             </Form>
         );
     }
@@ -91,9 +92,9 @@ const formikEnhancer = withFormik({
             lastName: values.lastName,
             username: values.username,
             password: values.password
-		};
+        };
 
-		if (user.firstName && user.lastName && user.username && user.password)
+		if (user.username && user.password)
             props.dispatch(userActions.register(user));
 
         setSubmitting(false);

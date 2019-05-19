@@ -51,15 +51,22 @@ class App extends Component {
                     <IconButton color="inherit" aria-label="Menu">
                         <MenuIcon />
                     </IconButton>
-
                     <Button size="medium" color="default">
                         <Link to="/fuel-log" style={linkStyle}>Add Log</Link>
                     </Button>
                     <Button size="medium" color="default">
                         <Link to="/list" style={linkStyle}>Logs</Link>
                     </Button>
+
+
                     <Button size="medium" color="default">
                         <Link to="/login" style={linkStyle}>Logout</Link>
+                    </Button>
+                    <Button size="medium" color="default">
+                        <Link to="/register" style={linkStyle}>Register</Link>
+                    </Button>
+                    <Button size="medium" color="default">
+                        <Link to="/pricing" style={linkStyle}>Pricing</Link>
                     </Button>
                 </Toolbar>
             </AppBar>
