@@ -19,6 +19,7 @@ import Pricing from './PricingPage/Pricing';
 import { FormikForm } from './LogPage/LogFormik';
 import { LogForm } from './LogPage/LogForm';
 import { LogFormikRedux } from './LogPage/LogFormikRedux';
+import { LogFormLayout } from './LogPage/LogFormLayout';
 import { LogList } from './LogListPage/LogListPage';
 
 import './App.css';
@@ -68,7 +69,7 @@ class App extends Component {
             <div>
                 <PrivateRoute exact path="/" component={HomePage} />
                 <PrivateRoute exact path="/list" component={LogList} />
-                <PrivateRoute exact path="/fuel-log" component={LogFormikRedux} />
+                <PrivateRoute exact path="/fuel-log" component={LogFormLayout} />
                 {/* <PrivateRoute exact path="/fuel-log" component={FormikForm} /> */}
                 {/* <PrivateRoute exact path="/fuel-log" component={LogForm} /> */}
                 <Route path="/login" component={LoginPage} />

@@ -9,6 +9,7 @@ import { Label } from 'office-ui-fabric-react/lib/Label';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 
 class LogFormikRedux extends React.Component {
+
     render() {
         const {
             values,
@@ -18,13 +19,12 @@ class LogFormikRedux extends React.Component {
             handleChange,
             handleBlur,
             handleSubmit,
+            handleReset,
             isSubmitting
         } = this.props;
 
         return (
-            <Form>
-                <Label>Create a new log</Label>
-    
+            <Form>    
                 <TextField 
                     name="logDate"
                     label="Log Date"
@@ -58,7 +58,7 @@ class LogFormikRedux extends React.Component {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.fuelVolume} />
-                {errors.fuelVolume && <div id="feedback">{errors.fuelVolume}</div>}
+                {errors.fuelVolume && Boolean(errors.fuelVolume) && <div id="feedback">{errors.fuelVolume}</div>}
                 {touched.fuelVolume && <div>{touched.fuelVolume}</div>}
                 
                 <TextField
@@ -72,7 +72,12 @@ class LogFormikRedux extends React.Component {
     
                 <DefaultButton 
                     type="submit"
-                    text="Submit Btn" />
+                    text="Submit" />
+
+                <DefaultButton 
+                    type="submit"
+                    text="Clear"
+                    onClick={handleReset} />
             </Form>
         );
     }
@@ -96,8 +101,6 @@ const formikEnhancer = withFormik({
 		price: Yup.string().required('Price is required.')
     }),
     handleSubmit: (values, { props, setSubmitting }) => {
-        console.log(values);
-
         let userId = JSON.parse(localStorage.user).id;
 		let fuelLog = { 
 			logDate: values.logDate, 
