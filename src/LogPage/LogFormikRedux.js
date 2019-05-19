@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 import { logActions } from '../_actions';
 import * as Yup from 'yup';
 import { PrimaryButton, DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { Label } from 'office-ui-fabric-react/lib/Label';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
-import styles from './styles';
+import styles from '../styling/styles';
 
 class LogFormikRedux extends React.Component {
 
