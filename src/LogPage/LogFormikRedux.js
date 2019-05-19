@@ -31,10 +31,8 @@ class LogFormikRedux extends React.Component {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.logDate} />
-                {/* <Field 
-                    style={fieldStyles}
-                    name="logDate" 
-                    label="Log Date" /> */}
+                {errors.logDate && <div id="feedback">{errors.logDate}</div>}
+                {touched.logDate && <div>{touched.logDate}</div>}
     
                 <TextField
                     name="odometer"
@@ -42,9 +40,8 @@ class LogFormikRedux extends React.Component {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.odometer} />
-                {/* <Field 
-                    id="odometer"
-                    name="odometer" /> */}
+                {errors.odometer && <div id="feedback">{errors.odometer}</div>}
+                {touched.odometer && <div>{touched.odometer}</div>}
     
                 <TextField
                     name="tripometer"
@@ -52,6 +49,8 @@ class LogFormikRedux extends React.Component {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.tripometer} />
+                {errors.tripometer && <div id="feedback">{errors.tripometer}</div>}
+                {touched.tripometer && <div>{touched.tripometer}</div>}
     
                 <TextField
                     name="fuelVolume"
@@ -59,6 +58,8 @@ class LogFormikRedux extends React.Component {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.fuelVolume} />
+                {errors.fuelVolume && <div id="feedback">{errors.fuelVolume}</div>}
+                {touched.fuelVolume && <div>{touched.fuelVolume}</div>}
                 
                 <TextField
                     name="price"
@@ -66,6 +67,8 @@ class LogFormikRedux extends React.Component {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.price} />
+                {errors.price && <div id="feedback">{errors.price}</div>}
+                {touched.price && <div>{touched.price}</div>}
     
                 <DefaultButton 
                     type="submit"
