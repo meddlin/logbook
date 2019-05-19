@@ -4,11 +4,6 @@ import { logActions } from '../_actions';
 import { store } from '../_helpers';
 
 import FuelLog from '../_components/FuelLog/FuelLog';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 
 class LogList extends Component {
   constructor(props) {

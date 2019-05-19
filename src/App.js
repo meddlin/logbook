@@ -16,7 +16,7 @@ import { HomePage } from './HomePage/HomePage';
 import { LoginPage } from './LoginPage/LoginPage';
 import { RegisterPage } from './RegisterPage/RegisterPage';
 import Pricing from './PricingPage/Pricing';
-import { Log } from './LogPage/Log';
+import { LogFormLayout } from './LogPage/LogFormLayout';
 import { LogList } from './LogListPage/LogListPage';
 
 import './App.css';
@@ -37,7 +37,7 @@ class App extends Component {
 
     const linkStyle = {
       color: 'white',
-      'text-decoration': 'none'
+      textDecoration: 'none'
     };
 
     return (
@@ -66,7 +66,7 @@ class App extends Component {
             <div>
                 <PrivateRoute exact path="/" component={HomePage} />
                 <PrivateRoute exact path="/list" component={LogList} />
-                <PrivateRoute exact path="/fuel-log" component={Log} />
+                <PrivateRoute exact path="/fuel-log" component={LogFormLayout} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/pricing" component={Pricing} />
