@@ -3,10 +3,10 @@ import { withFormik, Form, Field } from 'formik';
 import { connect } from 'react-redux';
 import { logActions } from '../_actions';
 import * as Yup from 'yup';
-
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
+import { PrimaryButton, DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Label } from 'office-ui-fabric-react/lib/Label';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
+import styles from './styles';
 
 class LogFormikRedux extends React.Component {
 
@@ -31,8 +31,7 @@ class LogFormikRedux extends React.Component {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.logDate} />
-                {errors.logDate && <div id="feedback">{errors.logDate}</div>}
-                {touched.logDate && <div>{touched.logDate}</div>}
+                {(touched.logDate && errors.logDate) ? <div>{errors.logDate}</div> : ""}
     
                 <TextField
                     name="odometer"
@@ -40,8 +39,7 @@ class LogFormikRedux extends React.Component {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.odometer} />
-                {errors.odometer && <div id="feedback">{errors.odometer}</div>}
-                {touched.odometer && <div>{touched.odometer}</div>}
+                {(touched.odometer && errors.odometer) ? <div>{errors.odometer}</div> : ""}
     
                 <TextField
                     name="tripometer"
@@ -49,8 +47,7 @@ class LogFormikRedux extends React.Component {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.tripometer} />
-                {errors.tripometer && <div id="feedback">{errors.tripometer}</div>}
-                {touched.tripometer && <div>{touched.tripometer}</div>}
+                {(touched.odometer && errors.tripometer) ? <div>{errors.tripometer}</div> : ""}
     
                 <TextField
                     name="fuelVolume"
@@ -58,8 +55,7 @@ class LogFormikRedux extends React.Component {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.fuelVolume} />
-                {errors.fuelVolume && Boolean(errors.fuelVolume) && <div id="feedback">{errors.fuelVolume}</div>}
-                {touched.fuelVolume && <div>{touched.fuelVolume}</div>}
+                {(touched.odometer && errors.fuelVolume) ? <div>{errors.fuelVolume}</div> : ""}
                 
                 <TextField
                     name="price"
@@ -67,17 +63,19 @@ class LogFormikRedux extends React.Component {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.price} />
-                {errors.price && <div id="feedback">{errors.price}</div>}
-                {touched.price && <div>{touched.price}</div>}
+                {(touched.odometer && errors.price) ? <div>{errors.price}</div> : ""}
     
-                <DefaultButton 
-                    type="submit"
-                    text="Submit" />
-
-                <DefaultButton 
-                    type="submit"
-                    text="Clear"
-                    onClick={handleReset} />
+                <div style={styles.formStyles.buttons}>
+                    <PrimaryButton 
+                        type="submit"
+                        text="Submit" 
+                    />
+                    <DefaultButton 
+                        type="submit"
+                        text="Clear"
+                        onClick={handleReset} 
+                    />
+                </div>
             </Form>
         );
     }
