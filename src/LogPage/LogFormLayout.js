@@ -1,6 +1,6 @@
 import React from 'react';
 import { LogFormikRedux } from './LogFormikRedux';
-import styles from './styles';
+import styles from '../styling/styles';
 
 export class LogFormLayout extends React.Component {
 
