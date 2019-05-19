@@ -8,7 +8,7 @@ export class LogFormLayout extends React.Component {
         return (
             <div style={styles.formStyles.top} className="ms-Grid" dir="ltr">
                 <div className="ms-Grid-row">
-                    <div className="ms-Grid-col ms-sm12 ms-md6 ms-lg6 ms-mdPush3 ms-lgPush3">
+                    <div className="ms-Grid-col ms-sm12 ms-md4 ms-lg4 ms-mdPush4 ms-lgPush4">
                         <LogFormikRedux />
                     </div>
                 </div>
