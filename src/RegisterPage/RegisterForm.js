@@ -53,7 +53,8 @@ class RegisterForm extends React.Component {
                     label="Password"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.password} />
+                    value={values.password}
+                    type="password" />
                 {(touched.password && errors.password) ? <div>{errors.password}</div> : ""}
 
                 <div style={styles.formStyles.buttons}>
