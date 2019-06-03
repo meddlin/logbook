@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
+import { ContextualMenuItemType } from 'office-ui-fabric-react/lib/ContextualMenu';
 
 import { history } from './_helpers';
 import { alertActions } from './_actions';
@@ -48,9 +50,70 @@ class App extends Component {
         <Router history={history}>
             <AppBar position="static">
                 <Toolbar>
+
                     <IconButton color="inherit" aria-label="Menu">
                         <MenuIcon />
                     </IconButton>
+                    <DefaultButton
+                      text="Click for ContextualMenu"
+                      menuProps={{
+                        shouldFocusOnMount: true,
+                        items: [
+                          {
+                            key: 'newItem',
+                            text: 'New',
+                            onClick: () => console.log('New clicked')
+                          },
+                          {
+                            key: 'divider_1',
+                            itemType: ContextualMenuItemType.Divider
+                          },
+                          {
+                            key: 'rename',
+                            text: 'Rename',
+                            onClick: () => console.log('Rename clicked')
+                          },
+                          {
+                            key: 'edit',
+                            text: 'Edit',
+                            onClick: () => console.log('Edit clicked')
+                          },
+                          {
+                            key: 'properties',
+                            text: 'Properties',
+                            onClick: () => console.log('Properties clicked')
+                          },
+                          {
+                            key: 'linkNoTarget',
+                            text: 'Link same window',
+                            href: 'http://bing.com'
+                          },
+                          {
+                            key: 'linkWithTarget',
+                            text: 'Link new window',
+                            href: 'http://bing.com',
+                            target: '_blank'
+                          },
+                          {
+                            key: 'linkWithOnClick',
+                            name: 'Link click',
+                            href: 'http://bing.com',
+                            onClick: (ev: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+                              alert('Link clicked');
+                              ev.preventDefault();
+                            },
+                            target: '_blank'
+                          },
+                          {
+                            key: 'disabled',
+                            text: 'Disabled item',
+                            disabled: true,
+                            onClick: () => console.error('Disabled item should not be clickable.')
+                          }
+                        ]
+                      }}
+                    />
+
                     <Button size="medium" color="default">
                         <Link to="/fuel-log" style={linkStyle}>Add Log</Link>
                     </Button>
