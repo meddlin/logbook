@@ -105,9 +105,10 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  const { alert } = state;
+  const { alert, users } = state;
   return {
-    alert
+    alert,
+    users
   };
 }
 
