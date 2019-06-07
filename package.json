@@ -21,11 +21,13 @@
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
+    "@uifabric/fluent-theme": "^0.16.10",
     "bcryptjs": "^2.4.3",
     "dotenv": "^6.2.0",
     "formik": "^1.5.4",
     "history": "^4.9.0",
     "mongoose": "^5.4.17",
+    "office-ui-fabric-core": "^10.1.0",
     "office-ui-fabric-react": "^6.182.1",
     "passport": "^0.4.0",
     "passport-auth0": "^1.1.0",

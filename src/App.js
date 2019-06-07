@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import { Router, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import { DefaultButton, Label } from 'office-ui-fabric-react';
+import { IconButton } from 'office-ui-fabric-react/lib/Button';
 
 import { history } from './_helpers';
 import { alertActions } from './_actions';
@@ -18,6 +14,7 @@ import { RegisterPage } from './RegisterPage/RegisterPage';
 import Pricing from './PricingPage/Pricing';
 import { LogFormLayout } from './LogPage/LogFormLayout';
 import { LogList } from './LogListPage/LogListPage';
+
 
 import './App.css';
 
@@ -35,10 +32,33 @@ class App extends Component {
   render() {
     const { alert } = this.props;
 
-    const linkStyle = {
-      color: 'white',
-      textDecoration: 'none'
-    };
+    const styles = {
+      navBar: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: '#484644',
+
+        left: {
+          display: 'flex',
+          flexDirection: 'row'
+        },
+        right: {
+          display: 'flex',
+          flexDirection: 'row'
+        }
+      },
+      linkStyle: {
+        textDecoration: 'none',
+        margin: '0 0.25em 0 0.25em'
+      },
+      whiteLabel: {
+        color: 'white'
+      }
+    }
+
+    
+    
 
     return (
       <div className="App">
@@ -46,30 +66,35 @@ class App extends Component {
           alert.message && <div className={`alert ${alert.type}`}>{alert.message.message}</div>
         }
         <Router history={history}>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton color="inherit" aria-label="Menu">
-                        <MenuIcon />
-                    </IconButton>
-                    <Button size="medium" color="default">
-                        <Link to="/fuel-log" style={linkStyle}>Add Log</Link>
-                    </Button>
-                    <Button size="medium" color="default">
-                        <Link to="/list" style={linkStyle}>Logs</Link>
-                    </Button>
+            <div style={styles.navBar}>
+                <div style={styles.navBar.left}>
+                  <IconButton 
+                    style={{color: 'white'}} 
+                    iconProps={{ iconName: 'CollapseMenu' }} 
+                    title="CollapseMenu" 
+                    ariaLabel="CollapseMenu" />
+                  <Link to="/fuel-log" style={styles.linkStyle}>
+                    <Label style={styles.whiteLabel}>Add Log</Label>
+                  </Link>
+                  <Link to="/list" style={styles.linkStyle}>
+                    <Label style={styles.whiteLabel}>Logs</Label>
+                  </Link>
+                  <Link to="/pricing" style={styles.linkStyle}>
+                    <Label style={styles.whiteLabel}>Pricing</Label>
+                  </Link>
+                </div>
 
+                <div style={styles.navBar.right}>
+                  <Link to="/login" style={styles.linkStyle}>
+                    <Label style={styles.whiteLabel}>Logout</Label>
+                  </Link>
+                  <Link to="/register" style={styles.linkStyle}>
+                    <Label style={styles.whiteLabel}>Register</Label>
+                  </Link>
+                </div>
 
-                    <Button size="medium" color="default">
-                        <Link to="/login" style={linkStyle}>Logout</Link>
-                    </Button>
-                    <Button size="medium" color="default">
-                        <Link to="/register" style={linkStyle}>Register</Link>
-                    </Button>
-                    <Button size="medium" color="default">
-                        <Link to="/pricing" style={linkStyle}>Pricing</Link>
-                    </Button>
-                </Toolbar>
-            </AppBar>
+            </div>
+
             <div>
                 <PrivateRoute exact path="/" component={HomePage} />
                 <PrivateRoute exact path="/list" component={LogList} />
