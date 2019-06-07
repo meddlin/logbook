@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Router, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import { DefaultButton, Label } from 'office-ui-fabric-react';
+import { Label } from 'office-ui-fabric-react';
 import { IconButton } from 'office-ui-fabric-react/lib/Button';
 
 import { history } from './_helpers';
@@ -57,9 +56,6 @@ class App extends Component {
       }
     }
 
-    
-    
-
     return (
       <div className="App">
         {
@@ -92,7 +88,6 @@ class App extends Component {
                     <Label style={styles.whiteLabel}>Register</Label>
                   </Link>
                 </div>
-
             </div>
 
             <div>
