@@ -6,9 +6,20 @@ export function users(state = {}, action) {
 		case userConstants.GETALL_SUCCESS: return { items: action.users };
 		case userConstants.GETALL_FAILURE: return { error: action.error };
 
-		case userConstants.LOGIN_REQUEST: return { user: action.user };
-		case userConstants.LOGIN_SUCCESS: return { user: action.user };
-		case userConstants.LOGIN_FAILURE: return { error: action.error };
+		// case userConstants.LOGIN_REQUEST: 
+		// 	return { 
+		// 		...state,
+		// 		user: action.user 
+		// 	};
+		// case userConstants.LOGIN_SUCCESS: 
+		// 	return { 
+		// 		...state,
+		// 		user: action.user,
+		// 		isLoggedIn: true
+		// 	};
+		// case userConstants.LOGIN_FAILURE: return { 
+		// 	error: action.error 
+		// };
 
 		default:
 			return state;

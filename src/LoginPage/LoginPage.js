@@ -12,46 +12,58 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Typography from '@material-ui/core/Typography';
 
-class LoginPage extends React.Component {
+import { LoginFormik } from './LoginFormik';
+import styles from '../styling/styles';
+
+export class LoginPage extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.props.dispatch(userActions.logout());
+		// this.props.dispatch(userActions.logout());
 
-		this.state = {
-			username: '',
-			password: '',
-			submitted: false
-		};
+		// this.state = {
+		// 	username: '',
+		// 	password: '',
+		// 	submitted: false
+		// };
 
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
+		// this.handleChange = this.handleChange.bind(this);
+		// this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleChange(e) {
-		const { name, value } = e.target;
-		this.setState({ [name]: value });
-	}
+	// handleChange(e) {
+	// 	const { name, value } = e.target;
+	// 	this.setState({ [name]: value });
+	// }
 
-	handleSubmit(e) {
-		e.preventDefault();
+	// handleSubmit(e) {
+	// 	e.preventDefault();
 
-		this.setState({ submitted: true });
-		const { username, password } = this.state;
-		const { dispatch } = this.props;
-		if (username && password) {
-			dispatch(userActions.login(username, password));
-		}
-	}
+	// 	this.setState({ submitted: true });
+	// 	const { username, password } = this.state;
+	// 	const { dispatch } = this.props;
+	// 	if (username && password) {
+	// 		dispatch(userActions.login(username, password));
+	// 	}
+	// }
 
 	render() {
-		const { loggingIn } = this.props;
-		const { username, password, submitted } = this.state;
+		// const { loggingIn } = this.props;
+		// const { username, password, submitted } = this.state;
 
 		return (
 			<div className="col-md-6 col-md-offset-3">
                 <h2>Login</h2>
-                <form name="form" onSubmit={this.handleSubmit}>
+
+				<div style={styles.formStyles.top} className="ms-Grid" dir="ltr">
+					<div className="ms-Grid-row">
+						<div className="ms-Grid-col ms-sm12 ms-md4 ms-lg4 ms-mdPush4 ms-lgPush4">
+							<LoginFormik />
+						</div>
+					</div>
+				</div>
+
+                {/* <form name="form" onSubmit={this.handleSubmit}>
 
                 	<FormControl margin="normal" required fullWidth>
 			            <InputLabel htmlFor="username">Username</InputLabel>
@@ -89,16 +101,16 @@ class LoginPage extends React.Component {
                         </Link>
                     </div>
                     
-                </form>
+                </form> */}
             </div>
 		);
 	}
 }
 
-function mapStateToProps(state) {
-	const { loggingIn } = state.authentication;
-	return { loggingIn };
-}
+// function mapStateToProps(state) {
+// 	const { loggingIn } = state.authentication;
+// 	return { loggingIn };
+// }
 
-const connectedLoginPage = connect(mapStateToProps)(LoginPage);
-export { connectedLoginPage as LoginPage };
+// const connectedLoginPage = connect(mapStateToProps)(LoginPage);
+// export { connectedLoginPage as LoginPage };

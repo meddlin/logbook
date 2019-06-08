@@ -28,8 +28,19 @@ class App extends Component {
     });
   }
 
+  async isLoggedIn() {
+    // let u = localStorage.getItem('user');    
+    // return (u !== null) ? true : false;
+
+    
+  }
+
+  componentDidMount() {
+    
+  }
+
   render() {
-    const { alert } = this.props;
+    const { alert, users } = this.props;
 
     const styles = {
       navBar: {
@@ -81,12 +92,22 @@ class App extends Component {
                 </div>
 
                 <div style={styles.navBar.right}>
-                  <Link to="/login" style={styles.linkStyle}>
-                    <Label style={styles.whiteLabel}>Logout</Label>
-                  </Link>
-                  <Link to="/register" style={styles.linkStyle}>
-                    <Label style={styles.whiteLabel}>Register</Label>
-                  </Link>
+
+                  {
+                    users && users.user ? 
+                    <Link to="/login" style={styles.linkStyle}>
+                      <Label style={styles.whiteLabel}>Logout</Label>
+                    </Link> :
+                    <div>
+                      <Link to="/login" style={styles.linkStyle}>
+                        <Label style={styles.whiteLabel}>Sign In</Label>
+                      </Link>
+                      <Link to="/register" style={styles.linkStyle}>
+                        <Label style={styles.whiteLabel}>Register</Label>
+                      </Link>
+                    </div>
+                  }
+                  
                 </div>
             </div>
 
