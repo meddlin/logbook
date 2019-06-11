@@ -6,13 +6,11 @@ import { IconButton } from 'office-ui-fabric-react/lib/Button';
 
 class NavigationBar extends Component {
 
-    componentDidMount() {
-        let unsubscribe = this.props;
-        console.log(unsubscribe);
+    isLoggedIn() {
+        return localStorage.getItem('user') ? true : false;
     }
 
     render() {
-        const { alert, users } = this.props;
         const styles = {
             navBar: {
               display: 'flex',
@@ -65,7 +63,7 @@ class NavigationBar extends Component {
 
                 <div style={styles.navBar.right}>
                 {
-                    users && users.user ? 
+                    this.isLoggedIn ? 
                     <Link to="/login" style={styles.linkStyle}>
                       <Label style={styles.whiteLabel}>Logout</Label>
                     </Link> :
