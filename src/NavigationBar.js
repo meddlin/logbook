@@ -85,10 +85,10 @@ class NavigationBar extends Component {
 }
 
 function mapStateToProps(state) {
-    const { alert, users } = state;
+    const { alert, user } = state;
     return {
       alert,
-      users
+      user
     };
   }
 

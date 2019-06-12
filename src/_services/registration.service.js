@@ -1,21 +1,23 @@
 import { authHeader } from '../_helpers';
 import { authenticationService } from './authentication.service';
 
-export const userService = {
-	getAll
+export const registrationService = {
+	register
 };
 
 const config = {
 	apiUrl: process.env.REACT_APP_API_URL || 'https://localhost:5001'
 };
 
-function getAll() {
-	const requestOptions = { 
-		method: 'GET',
-		headers: authHeader()
-	};
+function register(user) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+    };
 
-	return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+	return fetch(`${config.apiUrl}/api/users/register`, requestOptions)
+		.then(handleResponse);
 }
 
 function handleResponse(response) {
