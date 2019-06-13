@@ -8,6 +8,7 @@ import { PrivateRoute } from './_components';
 import { NavigationBar } from './NavigationBar';
 import { HomePage } from './HomePage/HomePage';
 import { LoginPage } from './LoginPage/LoginPage';
+import { LogoutPage } from './LogoutPage/LogoutPage';
 import { RegisterPage } from './RegisterPage/RegisterPage';
 import Pricing from './PricingPage/Pricing';
 import { LogFormLayout } from './LogPage/LogFormLayout';
@@ -42,6 +43,7 @@ class App extends Component {
                 <PrivateRoute exact path="/list" component={LogList} />
                 <PrivateRoute exact path="/fuel-log" component={LogFormLayout} />
                 <Route path="/login" component={LoginPage} />
+                <Route path="/logout" component={LogoutPage} />
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/pricing" component={Pricing} />
             </div>

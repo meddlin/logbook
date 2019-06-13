@@ -1,7 +1,7 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userActions } from '../_actions';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -23,9 +23,6 @@ const styles = theme => ({
 });
 
 class HomePage extends React.Component {
-	componentDidMount() {
-		/*this.props.dispatch(userActions.getAll());*/
-	}
 
 	render() {
 		const { classes, user, users } = this.props;
@@ -62,5 +59,5 @@ function mapStateToProps(state) {
 	return { user, users };
 }
 
-const connectedHomePage = connect(mapStateToProps)(withStyles(styles)(HomePage));
+const connectedHomePage = withRouter(connect(mapStateToProps)(withStyles(styles)(HomePage)));
 export { connectedHomePage as HomePage };

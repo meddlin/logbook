@@ -1,8 +1,9 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { LoginFormik } from './LoginFormik';
 import styles from '../styling/styles';
 
-export class LoginPage extends React.Component {
+class LoginPage extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -23,3 +24,6 @@ export class LoginPage extends React.Component {
 		);
 	}
 }
+
+const loginPageWithRouter = withRouter(LoginPage);
+export { loginPageWithRouter as LoginPage };

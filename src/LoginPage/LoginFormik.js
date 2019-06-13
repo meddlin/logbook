@@ -1,11 +1,12 @@
 import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Form } from 'formik';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
-import { userActions } from '../_actions';
+import { authenticationActions } from '../_actions';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
+import { store } from '../_helpers';
 
 class LoginFormik extends React.Component {
     render() {
@@ -46,9 +47,8 @@ class LoginFormik extends React.Component {
                     onChange={handleChange} />
                 
                 <PrimaryButton 
-                        type="submit"
-                        text="Submit" 
-                    />
+                    type="submit"
+                    text="Submit" />
             </Form>
         );
     }
@@ -68,17 +68,19 @@ const formikEnhancer = withFormik({
     }),
     handleSubmit: (values, { props, setSubmitting }) => {
         const { username, password } = values;
-        if (username && password) props.dispatch(userActions.login(username, password));
+        if (username && password) {
+            //props.dispatch(authenticationActions.login(username, password));
+            store.dispatch(authenticationActions.login(username, password));
+        }
 
         setSubmitting(false);
     }
 })(LoginFormik);
 
 function mapStateToProps(state) {
-    const { users } = state.users;
-
+    const { user } = state;
     return {
-        users: users
+        user: user
     };
 }
 

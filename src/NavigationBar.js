@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Label } from 'office-ui-fabric-react';
 import { IconButton } from 'office-ui-fabric-react/lib/Button';
+import { store } from './_helpers';
 
 class NavigationBar extends Component {
 
     isLoggedIn() {
-        return localStorage.getItem('user') ? true : false;
+      const { user } = this.props;
+      return user.token ? true : false;
     }
 
     render() {
@@ -64,7 +66,7 @@ class NavigationBar extends Component {
                 <div style={styles.navBar.right}>
                 {
                     this.isLoggedIn ? 
-                    <Link to="/login" style={styles.linkStyle}>
+                    <Link to="/logout" style={styles.linkStyle}>
                       <Label style={styles.whiteLabel}>Logout</Label>
                     </Link> :
                     <div style={styles.rowLinks}>
@@ -85,10 +87,10 @@ class NavigationBar extends Component {
 }
 
 function mapStateToProps(state) {
-    const { alert, user } = state;
+    const { alert, authentication } = state;
     return {
-      alert,
-      user
+      alert: alert,
+      user: authentication.user
     };
   }
 
