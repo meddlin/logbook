@@ -3,16 +3,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Label } from 'office-ui-fabric-react';
 import { IconButton } from 'office-ui-fabric-react/lib/Button';
-import { store } from './_helpers';
 
 class NavigationBar extends Component {
 
-    isLoggedIn() {
-      const { user } = this.props;
-      return user.token ? true : false;
-    }
-
     render() {
+        const { isLoggedIn, loggingIn } = this.props;
+
         const styles = {
             navBar: {
               display: 'flex',
@@ -64,21 +60,20 @@ class NavigationBar extends Component {
                 </div>
 
                 <div style={styles.navBar.right}>
-                {
-                    this.isLoggedIn ? 
-                    <Link to="/logout" style={styles.linkStyle}>
-                      <Label style={styles.whiteLabel}>Logout</Label>
-                    </Link> :
-                    <div style={styles.rowLinks}>
-                      <Link to="/login" style={styles.linkStyle}>
-                        <Label style={styles.whiteLabel}>Sign In</Label>
-                      </Link>
-                      <Link to="/register" style={styles.linkStyle}>
-                        <Label style={styles.whiteLabel}>Register</Label>
-                      </Link>
-                    </div>
-                }
-                  
+                  {
+                      (isLoggedIn && !loggingIn) ? 
+                      <Link to="/logout" style={styles.linkStyle}>
+                        <Label style={styles.whiteLabel}>Logout</Label>
+                      </Link> :
+                      <div style={styles.rowLinks}>
+                        <Link to="/login" style={styles.linkStyle}>
+                          <Label style={styles.whiteLabel}>Sign In</Label>
+                        </Link>
+                        <Link to="/register" style={styles.linkStyle}>
+                          <Label style={styles.whiteLabel}>Register</Label>
+                        </Link>
+                      </div>
+                  }
                 </div>
             
             </div>
@@ -90,7 +85,8 @@ function mapStateToProps(state) {
     const { alert, authentication } = state;
     return {
       alert: alert,
-      user: authentication.user
+      isLoggedIn: authentication.isLoggedIn,
+      loggingIn: authentication.loggingIn
     };
   }
 

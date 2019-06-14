@@ -23,7 +23,7 @@ export function authentication(state = initialState, action) {
 				error: action.error 
 			});
 	    case authenticationConstants.LOGOUT:
-			return Object.assign({}, ...state, {
+			return Object.assign({}, state, {
 				user: '',
 				loggingIn: false,
 				isLoggedIn: false

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { authenticationActions } from '../_actions';
+import { store } from '../_helpers';
 
 class LogoutPage extends Component {
-    componentWillMount() {
-        authenticationActions.logout();
-    }
-
+    
     render() {
-        return null;
+        store.dispatch(authenticationActions.logout());
+        return ( <Redirect to="/login" /> );
     }
 }
 
