@@ -1,13 +1,19 @@
-import { userConstants } from '../_constants';
+import { registrationConstants } from '../_constants';
 
 export function registration(state = {}, action) {
   switch (action.type) {
-    case userConstants.REGISTER_REQUEST:
-      return { registering: true };
-    case userConstants.REGISTER_SUCCESS:
-      return {};
-    case userConstants.REGISTER_FAILURE:
-      return {};
+    case registrationConstants.REGISTER_REQUEST:
+      return Object.assign({}, ...state, {
+        registering: true
+      });
+    case registrationConstants.REGISTER_SUCCESS:
+      return Object.assign({}, ...state, {
+        registering: false
+      });
+    case registrationConstants.REGISTER_FAILURE:
+      return Object.assign({}, ...state, {
+        registering: false
+      });
     default:
       return state
   }

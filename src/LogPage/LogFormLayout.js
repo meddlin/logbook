@@ -1,8 +1,9 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { LogFormikRedux } from './LogFormikRedux';
 import styles from '../styling/styles';
 
-export class LogFormLayout extends React.Component {
+class LogFormLayout extends React.Component {
 
     render() {
         return (
@@ -16,3 +17,6 @@ export class LogFormLayout extends React.Component {
         );        
     }
 }
+
+const logFormPageWithRouter = withRouter(LogFormLayout);
+export { logFormPageWithRouter as LogFormLayout };

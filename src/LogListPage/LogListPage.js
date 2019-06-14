@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logActions } from '../_actions';
 import { store } from '../_helpers';
@@ -8,10 +9,6 @@ import FuelLog from '../_components/FuelLog/FuelLog';
 class LogList extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      logs: {}
-    };
 
     this.getLogs = this.getLogs.bind(this);
   }
@@ -61,5 +58,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedLogListPage = connect(mapStateToProps)(LogList);
+const connectedLogListPage = withRouter(connect(mapStateToProps)(LogList));
 export { connectedLogListPage as LogList };

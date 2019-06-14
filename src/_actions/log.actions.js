@@ -8,9 +8,6 @@ export const logActions = {
     getLogListInDateRange
 };
 
-/**
-* 
-*/
 function createLog(userId, fuelLog) {
 	return dispatch => {
         dispatch(request(userId, fuelLog));
@@ -33,9 +30,6 @@ function createLog(userId, fuelLog) {
     function failure(error) { return { type: logConstants.CREATE_LOG_FAILURE, error } }
 }
 
-/**
-* 
-*/
 function getLogListInDateRange(beginDate, endDate) {
     return dispatch => {
         dispatch(request(beginDate, endDate));
