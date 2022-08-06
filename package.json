@@ -26,7 +26,7 @@
     "dotenv": "^6.2.0",
     "formik": "^1.5.4",
     "history": "^4.9.0",
-    "mongoose": "^5.4.17",
+    "mongoose": "^5.7.5",
     "office-ui-fabric-core": "^10.1.0",
     "office-ui-fabric-react": "^6.182.1",
     "passport": "^0.4.0",
