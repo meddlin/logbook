@@ -10,7 +10,11 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+import Table from '../components/table';
+
+
 export default function Home() {
+
   return (
     <div className={styles.container}>
       <Head>
@@ -70,6 +74,8 @@ export default function Home() {
 
           <p fontFamily="Roboto" fontWeight="500" fontSize="36px">test</p>
         </div>
+
+        <Table />
       </main>
 
       <footer className={styles.footer}>
