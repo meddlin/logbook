@@ -1,6 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Button from '@mui/material/Button';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 export default function Home() {
   return (
@@ -51,6 +59,16 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
+        </div>
+
+        <div>
+          {/* material UI works */}
+          <Button variant="outlined">Hello World</Button>
+          {/* material icons work */}
+          <AccountTreeIcon />
+          <AddAPhotoIcon />
+
+          <p fontFamily="Roboto" fontWeight="500" fontSize="36px">test</p>
         </div>
       </main>
 
