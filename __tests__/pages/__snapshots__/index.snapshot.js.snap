@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage unchanged 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <main
+      class="main"
+    >
+      <h1
+        class="title"
+      >
+        Welcome to 
+        <a
+          href="https://nextjs.org"
+        >
+          Next.js!
+        </a>
+      </h1>
+      <p
+        class="description"
+      >
+        Get started by editing
+         
+        <code
+          class="code"
+        >
+          pages/index.js
+        </code>
+      </p>
+      <div
+        class="grid"
+      >
+        <a
+          class="card"
+          href="https://nextjs.org/docs"
+        >
+          <h2>
+            Documentation →
+          </h2>
+          <p>
+            Find in-depth information about Next.js features and API.
+          </p>
+        </a>
+        <a
+          class="card"
+          href="https://nextjs.org/learn"
+        >
+          <h2>
+            Learn →
+          </h2>
+          <p>
+            Learn about Next.js in an interactive course with quizzes!
+          </p>
+        </a>
+        <a
+          class="card"
+          href="https://github.com/vercel/next.js/tree/canary/examples"
+        >
+          <h2>
+            Examples →
+          </h2>
+          <p>
+            Discover and deploy boilerplate example Next.js projects.
+          </p>
+        </a>
+        <a
+          class="card"
+          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <h2>
+            Deploy →
+          </h2>
+          <p>
+            Instantly deploy your Next.js site to a public URL with Vercel.
+          </p>
+        </a>
+      </div>
+      <div>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Hello World
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-testid="AccountTreeIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3z"
+          />
+        </svg>
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-testid="AddAPhotoIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M3 4V1h2v3h3v2H5v3H3V6H0V4h3zm3 6V7h3V4h7l1.83 2H21c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V10h3zm7 9c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-3.2-5c0 1.77 1.43 3.2 3.2 3.2s3.2-1.43 3.2-3.2-1.43-3.2-3.2-3.2-3.2 1.43-3.2 3.2z"
+          />
+        </svg>
+        <p
+          font-family="Roboto"
+          font-size="36px"
+          font-weight="500"
+        >
+          test
+        </p>
+      </div>
+    </main>
+    <footer
+      class="footer"
+    >
+      <a
+        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Powered by
+         
+        <span
+          class="logo"
+        >
+          <img
+            alt="Vercel Logo"
+            data-nimg="1"
+            decoding="async"
+            height="16"
+            loading="lazy"
+            src="/vercel.svg"
+            srcset="/vercel.svg 1x, /vercel.svg 2x"
+            style="color: transparent;"
+            width="72"
+          />
+        </span>
+      </a>
+    </footer>
+  </div>
+</div>
+`;
